@@ -9,3 +9,7 @@ label {
     margin-bottom: 2px;
     display: block;
 }
+
+.show {
+    display: block;
+}

@@ -1,6 +1,8 @@
 import django.db.utils
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django_htmx.http import HttpResponseClientRedirect
 
@@ -51,3 +53,15 @@ def signup_view(request):
         form = SignupForm()
 
     return render(request, 'users/signup.html', {"form": form})
+
+
+@login_required
+def logout_view(request):
+    logout(request)
+
+    return HttpResponseRedirect("/")
+
+
+@login_required
+def settings_view(request):
+    return render(request, 'users/settings.html')
