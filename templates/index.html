@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load tailwind_tags %}
+{% tailwind_css %}
+
+{% block content %}
+    <h1 class="text-red-400 text-lg">Welcome to bookrate!</h1>
+    <p>Welcome {{ user.username }}</p>
+{% endblock %}

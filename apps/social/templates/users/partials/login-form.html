@@ -1,0 +1,28 @@
+<form
+        hx-post="{% url 'login' %}"
+        hx-target="this"
+        hx-swap="outerHTML"
+>
+    {% csrf_token %}
+
+    <div class="flex flex-col gap-4">
+        {% for field in form %}
+        	{{ field }}
+        {% endfor %}
+    </div>
+
+    <input
+            class="py-2 px-12 rounded-sm text-xl border border-black my-3 cursor-pointer"
+            type="submit"
+            value="Login"
+    >
+
+    {% if form.errors %}
+        {% for non_field_error in form.non_field_errors %}
+            <p class="text-red-500">{{ non_field_error }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <p>Does not have an account ? <a class="text-blue-500 hover:underline"
+                                     href="{% url 'signup' %}">Signup</a></p>
+</form>

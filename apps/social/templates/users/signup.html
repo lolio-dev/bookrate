@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block head_title %}
+    Login
+{% endblock %}
+
+{% block content %}
+    <main class="flex h-screen">
+        <img src="https://images.pexels.com/photos/4440123/pexels-photo-4440123.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+             alt="illustration"
+             class="h-full"
+        >
+        <div class="flex flex-col gap-3 p-6 w-full">
+            <h1 class="text-4xl font-bold">Signup to Bookrate</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid assumenda debitis dolor
+                facere necessitatibus, nihil odit omnis recusandae vel. Atque deserunt dolorum iusto optio quasi quo
+                ratione sed voluptatibus?</p>
+
+            {% include 'users/partials/signup-form.html' %}
+        </div>
+    </main>
+{% endblock %}

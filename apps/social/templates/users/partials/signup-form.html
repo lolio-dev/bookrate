@@ -1,0 +1,39 @@
+<form
+        hx-post="{% url 'signup' %}"
+        hx-target="this"
+        hx-swap="outerHTML"
+        class="w-full"
+>
+    {% csrf_token %}
+
+    <div class="flex flex-col gap-4 w-full">
+        {% for field in form %}
+            <div>
+                <div class="flex items-center gap-2 w-full">
+                    {% if field.widget_type == 'checkbox' %}
+                        {{ field.label_tag }}
+                        {{ field }}
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
+                </div>
+                {% if field.errors %}
+                    <p class="text-red-500">{{ field.errors|striptags }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <input class="py-2 px-12 rounded-sm text-xl border border-black my-3 cursor-pointer" type="submit"
+           value="Signup">
+
+    {% if form.errors %}
+        {% for non_field_error in form.non_field_errors %}
+            <p class="text-red-500">{{ non_field_error }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <p>Already have an account ? <a class="text-blue-500 hover:underline"
+                                    href="{% url 'login' %}">Login</a></p>
+</form>
