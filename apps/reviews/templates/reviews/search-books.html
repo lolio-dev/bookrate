@@ -1,0 +1,22 @@
+{% extends 'main-layout.html' %}
+
+{% block main_content %}
+    <main class="p-6">
+        <form class="w-full">
+            {% csrf_token %}
+            <input
+                    class="w-full h-12"
+                    type="text"
+                    placeholder="search for books"
+                    name="query"
+                    hx-trigger="input delay:500ms"
+                    hx-post="{% url 'search_books' %}"
+                    hx-target="#results"
+            >
+        </form>
+
+        <div id="results" class="flex flex-col gap-2">
+            {% include 'reviews/partials/search-results.html' %}
+        </div>
+    </main>
+{% endblock %}

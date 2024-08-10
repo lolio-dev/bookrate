@@ -1,0 +1,24 @@
+{% load static %}
+
+{% if books %}
+    {% for book in books %}
+        {{ book }}
+        <div class="flex justify-between">
+            <div class="flex py-2 gap-2">
+                {% if book.thumbnail %}
+                    <img src="{{ book.thumbnail }}" alt="">
+                {% else %}
+                    <img src="{% static 'img/no-image.png' %}" alt="">
+                {% endif %}
+                <div>
+                    <h3 class="text-xl">{{ book.title }}</h3>
+                    <h4 class="font-medium text-lg">Author <span class="font-normal">{{ book.author }}</span></h4>
+                    <h4 class="font-medium text-lg">Publisher <span class="font-normal">{{ book.publisher }}</span></h4>
+                </div>
+            </div>
+            <a class="border border-black px-4 py-2 h-fit" href="{% url 'write_review' book_id=book.id %}">Choisir</a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>No results</p>
+{% endif %}

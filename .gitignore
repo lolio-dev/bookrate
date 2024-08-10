@@ -7,3 +7,7 @@ db.sqlite3
 *$py.class
 
 media
+
+.DS_Store
+static/.DS_Store
+apps/theme/node_modules
