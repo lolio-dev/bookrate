@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
+from apps.reviews.forms import CreateReviewForm
 from utils.books_helper import BooksHelper
 
 book_helper = BooksHelper()
@@ -25,5 +26,6 @@ def search_books(request):
 
 @login_required
 def write_review(request, book_id):
-    print(book_id)
-    return render(request, 'reviews/write-review.html', {"book_id": book_id})
+    form = CreateReviewForm()
+    book = book_helper.
+    return render(request, 'reviews/write-review.html', {"book_id": book_id, "form": form})

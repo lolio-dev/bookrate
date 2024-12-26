@@ -1,8 +1,9 @@
 {% extends 'main-layout.html' %}
+{% load static %}
 
 {% block main_content %}
     <main class="p-6">
-        <form class="w-full">
+        <form class="w-full" id="search-form">
             {% csrf_token %}
             <input
                     class="w-full h-12"
@@ -19,4 +20,8 @@
             {% include 'reviews/partials/search-results.html' %}
         </div>
     </main>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static '/js/search-books.js' %}"></script>
 {% endblock %}

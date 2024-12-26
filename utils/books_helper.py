@@ -22,3 +22,6 @@ class BooksHelper:
                     'thumbnail': volume_info.get('imageLinks').get('thumbnail') if volume_info.get('imageLinks') else None,
                 })
             return results
+
+    def get_book(self, q):
+        req = requests.get('')
