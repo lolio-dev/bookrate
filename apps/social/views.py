@@ -22,6 +22,9 @@ def login_view(request):
             else:
                 form.add_error(None, ValidationError('Invalid credentials'))
                 return render(request, 'users/partials/login-form.html', {"form": form})
+        else:
+            form.add_error(None, ValidationError('Invalid data'))
+            return render(request, 'users/partials/login-form.html', {"form": form})
     else:
         form = LoginForm()
 

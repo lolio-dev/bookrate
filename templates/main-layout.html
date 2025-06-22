@@ -3,10 +3,14 @@
 {% block content %}
     <nav class="flex justify-between items-center px-8 h-16 w-full shadow-md">
         <div class="flex items-center gap-3">
-            <h1 class="text-xl font-bold mr-4">BookRate</h1>
-            <a href="{% url 'search_books' %}">Write a review</a>
+            <h1 class="text-xl font-bold mr-4">
+                <a href="{% url 'index' %}">
+                    BookRate
+                </a>
+            </h1>
+            <a href="{% url 'search_books' %}">Ecrire une Review</a>
             <p>|</p>
-            <a href="">See profile</a>
+            <a href="">Visualiser votre profil</a>
         </div>
 
         <div class="flex gap-4 items-center">

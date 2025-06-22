@@ -125,3 +125,5 @@ INTERNAL_IPS = [
 ]
 
 AUTH_USER_MODEL = "social.User"
+
+LOGIN_URL = "/login"

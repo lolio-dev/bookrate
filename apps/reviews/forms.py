@@ -3,7 +3,11 @@ from django import forms
 from apps.reviews.models import Review
 
 
-class CreateReviewForm(forms.ModelForm):
+class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        exclude = ['user']
+        exclude = ['user', 'book_id']
+        fields = ['content']
+        widgets = {
+            "content": forms.Textarea(attrs={'class': 'w-full ', 'placeholder': 'Write your review'})
+        }

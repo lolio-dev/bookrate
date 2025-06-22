@@ -1,5 +1,29 @@
 {% extends 'main-layout.html' %}
 
 {% block main_content %}
-	<h1>Write review</h1>
+    <main class="px-24 py-6">
+        <section class="flex gap-12">
+            <img src="{{ book.thumbnail }}" alt="Image thumb">
+            <div>
+                <h2 class="text-2xl font-medium">{{ book.title }}</h2>
+                <h3 class="text-sm text-gray-400 mb-4">{{ book.author }}</h3>
+                {{ book.description|safe }}
+            </div>
+        </section>
+        <section class="mt-12">
+            <h1 class="text-3xl font-bold mb-4">Write a review</h1>
+
+            <form method="post" class="w-full">
+                {% csrf_token %}
+
+                <div class="w-full">
+                    {% for field in form %}
+                        {{ field }}
+                    {% endfor %}
+                </div>
+
+                <input class="py-2 px-12 rounded-sm text-xl border border-black my-3 cursor-pointer w-full" type="submit" value="Send">
+            </form>
+        </section>
+    </main>
 {% endblock %}

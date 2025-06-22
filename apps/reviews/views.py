@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from apps.reviews.forms import CreateReviewForm
+from apps.reviews.forms import ReviewForm
 from utils.books_helper import BooksHelper
 
 book_helper = BooksHelper()
@@ -17,7 +17,7 @@ def search_books(request):
     if request.method == 'POST':
         query = request.POST['query']
 
-        results = book_helper.query(query)
+        results = book_helper.get_books(query)
 
         return render(request, 'reviews/partials/search-results.html', {'books': results})
 
@@ -26,6 +26,16 @@ def search_books(request):
 
 @login_required
 def write_review(request, book_id):
-    form = CreateReviewForm()
-    book = book_helper.
-    return render(request, 'reviews/write-review.html', {"book_id": book_id, "form": form})
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        print(request.POST)
+        review = form.save(commit=False)
+        review.user = request.user
+        review.book_id = book_id
+        print(review)
+        review.save()
+
+        return redirect('index')
+    book = book_helper.get_book(book_id)
+    form = ReviewForm()
+    return render(request, 'reviews/write-review.html', {"book": book, "form": form})
